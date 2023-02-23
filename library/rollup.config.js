@@ -2,6 +2,7 @@ import babel from "@rollup/plugin-babel";
 import external from "rollup-plugin-peer-deps-external";
 import del from "rollup-plugin-delete";
 import pkg from "./package.json";
+import scss from "rollup-plugin-scss";
 
 export default {
   input: pkg.source,
@@ -14,6 +15,10 @@ export default {
     babel({
       exclude: "node_modules/**",
       babelHelpers: "bundled",
+    }),
+    scss({
+      output: "./build/css/style.css",
+      failOnError: true,
     }),
     del({ targets: ["dist/*"] }),
   ],
